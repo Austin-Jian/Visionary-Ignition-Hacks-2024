@@ -57,13 +57,12 @@ function App() {
         rows="10"
       />
       <br />
-      <button onClick={clearText}>Clear</button>
-
-      {/* Home Button */}
-      <br /><br />
-      <a href="/home.html">
-        <button>Home</button>
-      </a>
+      <div className="button-container">
+        <button onClick={clearText}>Clear</button>
+        <a href="/home.html">
+          <button>Home</button>
+        </a>
+      </div>
     </div>
   );
 }
