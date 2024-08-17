@@ -7,48 +7,61 @@
     <title>Braille Translator</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            margin: 20px;
-            background-color: #31708f; /* Slightly dark blue background */
-            color: white;
+            margin: 0;
+            padding: 20px;
+            background-color: #31708f;
+            color: #ecf0f1;
+            line-height: 1.6;
         }
 
         h1 {
-            margin-bottom: 20px;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #e67e22;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin: 20px 0;
+            color: #f39c12;
         }
 
         textarea {
-            width: 80%;
-            height: 100px;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #fff; /* Thicker white border */
-            border-radius: 5px;
-            background-color: #34495e; /* Darker input background */
-            color: white; /* White text color */
+            width: 90%;
+            max-width: 800px;
+            height: 120px;
+            margin: 15px 0;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #34495e;
+            border-radius: 10px;
+            background-color: #34495e;
+            color: #ecf0f1;
+            transition: border-color 0.3s ease;
         }
 
-        /* Set placeholder text color to white */
-        textarea::placeholder {
-            color: white;
-            opacity: 1; /* Ensure placeholder is fully opaque */
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
         }
 
         button {
-            padding: 10px;
-            margin: 5px;
+            padding: 12px 20px;
+            margin: 10px;
             font-size: 16px;
             cursor: pointer;
-            border: 2px solid #fff; /* Thicker white border */
-            border-radius: 5px;
-            background-color: #34495e; /* Lighter blue for buttons */
+            border: 2px solid transparent;
+            border-radius: 50px;
+            background-color: #e67e22;
             color: white;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #3498db;
+            background-color: #d35400;
+            border-color: #ecf0f1;
         }
 
         #brailleKeyboard {
@@ -57,31 +70,42 @@
 
         .braille-button {
             display: inline-block;
-            margin: 5px;
-            padding: 10px;
+            margin: 10px;
+            padding: 15px;
             font-size: 24px;
-            border: 3px solid #fff; /* Thicker white border */
+            border: 2px solid #34495e;
             cursor: pointer;
-            background-color: #34495e; /* Darker button background */
-            border-radius: 5px;
+            background-color: #34495e;
+            border-radius: 10px;
             color: white;
-            transition: background-color 0.2s;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .braille-button:hover {
             background-color: #1abc9c;
+            border-color: #ecf0f1;
         }
 
         .braille-label {
             display: block;
-            font-size: 12px;
+            font-size: 14px;
             margin-top: 5px;
-            color: white;
+            color: #bdc3c7;
         }
 
         #letterRow,
         #numberRow {
             margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Clear and Home buttons aligned in a row */
+        #controlButtons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -95,7 +119,6 @@
 
     <h3>Select Braille Characters to Translate</h3>
     <div id="brailleKeyboard">
-        <!-- Row 1: Letters A-Z -->
         <div id="letterRow">
             <div class="braille-button" onclick="addBrailleSymbol('⠁')">⠁<span class="braille-label">A</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠃')">⠃<span class="braille-label">B</span></div>
@@ -124,8 +147,7 @@
             <div class="braille-button" onclick="addBrailleSymbol('⠽')">⠽<span class="braille-label">Y</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠵')">⠵<span class="braille-label">Z</span></div>
         </div>
-
-        <!-- Row 2: Numbers 0-9 and Space -->
+        </div>
         <div id="numberRow">
             <div class="braille-button" onclick="addBrailleSymbol('⠴')">⠴<span class="braille-label">0</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠂')">⠂<span class="braille-label">1</span></div>
@@ -143,12 +165,11 @@
 
     <h3>Converted Output:</h3>
     <textarea id="outputText" readonly placeholder="The converted text will appear here..."></textarea><br>
-    
-    <!-- Clear Button -->
-    <button onclick="clearText()">Clear</button>
 
-    <!-- Home Button -->
-    <button onclick="location.href='home.html'">Home</button>
+    <div id="controlButtons">
+        <button onclick="clearText()">Clear</button>
+        <button onclick="location.href='home.html'">Home</button>
+    </div>
 
     <script src="braille.js"></script>
     <script>
@@ -157,7 +178,6 @@
             document.getElementById('outputText').value = '';
         }
     </script>
-    
 </body>
 
 </html>
