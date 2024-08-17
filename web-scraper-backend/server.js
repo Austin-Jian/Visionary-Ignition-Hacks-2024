@@ -1,8 +1,11 @@
+// Load the .env file from the parent directory
+require('dotenv').config({ path: '../.env' }); // This should be the first line
+
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const cors = require('cors');
-const OpenAI = require('openai'); // Updated import for OpenAI SDK v4.x
+const { OpenAI } = require('openai'); // Correct import for OpenAI SDK v4.x
 
 const app = express();
 const PORT = 8000;
@@ -10,12 +13,11 @@ const PORT = 8000;
 app.use(cors());
 app.use(express.json());
 
-// Initialize the OpenAI client
-require('dotenv').config();
+// Debugging: Check if the API key is being loaded
+console.log('API Key:', process.env.OPENAI_API_KEY); // Add this line to see if the key is being loaded
 
 const apiKey = process.env.OPENAI_API_KEY;
-console.log(apiKey); // Ensure it's loaded correctly
-
+const openai = new OpenAI({ apiKey }); // Correct initialization for OpenAI SDK v4.x
 
 app.post('/scrape', async (req, res) => {
   const { url } = req.body;
