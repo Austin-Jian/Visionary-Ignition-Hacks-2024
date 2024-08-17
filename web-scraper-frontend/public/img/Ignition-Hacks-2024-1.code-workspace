@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Ignition-Hacks-2024-1"
+		},
+		{
+			"path": "../../../igHacks2024"
+		},
+		{
+			"path": "../../../node_modules"
+		},
+		{
+			"path": "../../../web-scraper-backend"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
