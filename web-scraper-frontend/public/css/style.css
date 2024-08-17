@@ -157,7 +157,7 @@ p {
 
 .navStyle ul li a {
     display: block;
-    font-size: 14px;
+    font-size: 18px;
     color: #222222;
     font-family: 'Raleway', sans-serif;
     text-decoration: none;
@@ -1253,6 +1253,11 @@ img {
     -webkit-transition: all 0.2s ease 0s;
     -ms-transition: all 0.2s ease 0s;
     -o-transition: all 0.2s ease 0s;
+}
+
+.logo-img {
+    width: 140;
+    height: 60px;
 }
 
 .portfolio-item:hover .project_catg {
