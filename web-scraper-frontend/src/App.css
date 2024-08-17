@@ -1,52 +1,83 @@
-/* src/App.css */
+/* General body styling */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  margin: 20px;
+  margin: 0;
+  padding: 20px;
   background-color: #31708f;
-  color: white;
+  color: #ecf0f1;
+  line-height: 1.6;
 }
 
+/* Headings */
 h1 {
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #e67e22;
 }
 
+h3 {
+  font-size: 1.5em;
+  margin: 20px 0;
+  color: #f39c12;
+}
+
+/* Input and textarea styling */
 input,
 textarea {
-  width: 80%;
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 16px;
-  border: 2px solid #fff;
-  border-radius: 5px;
+  width: 90%;
+  max-width: 800px;
+  margin: 15px 0;
+  padding: 15px;
+  font-size: 18px;
+  border: 2px solid #34495e;
+  border-radius: 10px;
   background-color: #34495e;
-  color: white;
+  color: #ecf0f1;
+  transition: border-color 0.3s ease;
 }
 
-/* Specific styling for placeholders in the input and textarea */
+/* Placeholder styling */
 input::placeholder,
 textarea::placeholder {
-  color: white; /* Ensures white placeholder text */
-  font-size: 16px; /* Matches the font size of the input and textarea */
-  opacity: 1; /* Makes the placeholder text fully visible */
+  color: #bdc3c7;
+  font-size: 16px;
 }
 
-/* General button styling */
+/* Focused input/textarea */
+input:focus,
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Button styling */
 button {
-  padding: 10px;
-  margin: 5px;
+  padding: 12px 20px;
+  margin: 10px;
   font-size: 16px;
   cursor: pointer;
-  border: 2px solid #fff;
-  border-radius: 5px;
-  background-color: #3498db;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background-color: #e67e22;
   color: white;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+/* Button hover effects */
 button:hover {
-  background-color: #2980b9;
+  background-color: #d35400;
+  border-color: #ecf0f1;
 }
 
+/* Disable resizing of the textarea */
 textarea {
   resize: none;
+}
+
+/* Button container for alignment */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
