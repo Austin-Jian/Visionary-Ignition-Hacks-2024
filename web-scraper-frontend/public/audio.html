@@ -217,8 +217,9 @@
 
         function fastForward() {
             if (speechInstance) {
+                const speed = parseFloat(document.getElementById('speedSelect').value); // Ensure speed is reapplied
                 window.speechSynthesis.cancel();
-                currentIndex += 10 * 100; // Assuming 100 chars per 10 seconds (you can adjust this approximation)
+                currentIndex += 10 * speed * 100; // Adjusting index based on speed
                 if (currentIndex > currentText.length) {
                     currentIndex = currentText.length;
                 }
@@ -228,8 +229,9 @@
 
         function rewind() {
             if (speechInstance) {
+                const speed = parseFloat(document.getElementById('speedSelect').value); // Ensure speed is reapplied
                 window.speechSynthesis.cancel();
-                currentIndex -= 10 * 100; // Assuming 100 chars per 10 seconds (you can adjust this approximation)
+                currentIndex -= 10 * speed * 100; // Adjusting index based on speed
                 if (currentIndex < 0) {
                     currentIndex = 0;
                 }
@@ -246,7 +248,6 @@
 
         // Populate the voice list when voices are loaded
         window.speechSynthesis.onvoiceschanged = populateVoiceList;
-
     </script>
 
 </body>
