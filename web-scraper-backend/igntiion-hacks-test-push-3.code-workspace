@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../igntiion-hacks-test-push-3"
+		},
+		{
+			"path": "../igHacks2024"
+		},
+		{
+			"path": "../node_modules"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../web-scraper-frontend"
+		}
+	],
+	"settings": {}
+}
