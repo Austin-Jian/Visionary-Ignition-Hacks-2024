@@ -22,7 +22,7 @@ public class WebScraper {
 		 try {
 	            // Connect to the URL and get the HTML document
 			    //^
-	            doc = Jsoup.connect("https://stardewvalley.fandom.com/wiki/Lingcod#:~:text=The%20Lingcod%20is%20a%20fish,Cart%20for%20360%2D1%2C000g.")
+	            doc = Jsoup.connect("https://www.readthetale.com/popular-bedtime-stories/the-three-little-pigs")
 	                .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 	                .header("Accept-Language", "*")
 	                .get();
