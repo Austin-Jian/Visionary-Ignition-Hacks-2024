@@ -11,9 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize the OpenAI client
-const openai = new OpenAI({
-  apiKey: 'REMOVED', // Replace with your actual OpenAI API key
-});
+require('dotenv').config();
+
+const apiKey = process.env.OPENAI_API_KEY;
+console.log(apiKey); // Ensure it's loaded correctly
+
 
 app.post('/scrape', async (req, res) => {
   const { url } = req.body;
