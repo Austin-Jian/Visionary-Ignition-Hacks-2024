@@ -100,6 +100,60 @@
             flex-wrap: wrap;
         }
 
+        .icon-button {
+            width: 50px;
+            height: 50px;
+            background-color: #e67e22;
+            border-radius: 8px;
+            position: relative;
+            display: inline-block;
+            margin: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .icon-button:hover {
+            background-color: #d35400;
+        }
+
+        .icon-button::before,
+        .icon-button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .icon-button.rewind::before {
+            border-width: 10px 15px 10px 0;
+            border-color: transparent white transparent transparent;
+            left: 12px;
+            top: 15px;
+        }
+
+        .icon-button.rewind::after {
+            border-width: 10px 15px 10px 0;
+            border-color: transparent white transparent transparent;
+            left: 22px;
+            top: 15px;
+        }
+
+        .icon-button.fast-forward::before {
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent white;
+            left: 18px;
+            top: 15px;
+        }
+
+        .icon-button.fast-forward::after {
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent white;
+            left: 28px;
+            top: 15px;
+        }
+
     </style>
 </head>
 
@@ -133,8 +187,8 @@
         <div class="button-group">
             <button onclick="readText()">Read Aloud</button>
             <button id="pauseButton" onclick="togglePause()">Pause</button>
-            <button onclick="fastForward()">Fast Forward 10s</button>
-            <button onclick="rewind()">Rewind 10s</button>
+            <div class="icon-button rewind" onclick="rewind()"></div>
+            <div class="icon-button fast-forward" onclick="fastForward()"></div>
             <button onclick="clearText()">Clear</button>
         </div>
 
