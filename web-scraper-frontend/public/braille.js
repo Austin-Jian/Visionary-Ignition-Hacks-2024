@@ -153,3 +153,41 @@ function convertToText() {
 function addBrailleSymbol(symbol) {
     document.getElementById('inputText').value += symbol;
 }
+
+
+function highlightBrailleButton(character) {
+    // Clear any previous highlights
+    const brailleButtons = document.querySelectorAll('.braille-button');
+    brailleButtons.forEach(button => {
+        button.classList.remove('highlighted');
+    });
+
+    // Create a mapping of characters to Braille symbols
+    const charToBraille = {
+        'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑', 'f': '⠋', 'g': '⠛', 'h': '⠓',
+        'i': '⠊', 'j': '⠚', 'k': '⠅', 'l': '⠇', 'm': '⠍', 'n': '⠝', 'o': '⠕', 'p': '⠏',
+        'q': '⠟', 'r': '⠗', 's': '⠎', 't': '⠞', 'u': '⠥', 'v': '⠧', 'w': '⠺', 'x': '⠭',
+        'y': '⠽', 'z': '⠵',
+        '0': '⠴', '1': '⠂', '2': '⠆', '3': '⠒', '4': '⠲', '5': '⠢', '6': '⠖', '7': '⠶',
+        '8': '⠦', '9': '⠔',
+        ' ': '⠀'  // Braille space
+    };
+
+    // Get Braille symbol
+    const brailleSymbol = charToBraille[character.toLowerCase()];
+
+    // Highlight Braille button if exists
+    if (brailleSymbol) {
+        const buttonToHighlight = Array.from(brailleButtons).find(button => button.textContent.trim() === brailleSymbol);
+        if (buttonToHighlight) {
+            buttonToHighlight.classList.add('highlighted');
+        }
+    }
+}
+
+document.getElementById('inputText').addEventListener('input', function (e) {
+    // Get the last character typed
+    const lastChar = e.target.value.slice(-1);
+    // Highlight the corresponding Braille button
+    highlightBrailleButton(lastChar);
+});
