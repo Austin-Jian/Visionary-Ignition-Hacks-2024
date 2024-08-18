@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,7 +82,8 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        .braille-button:hover, .highlighted {
+        .braille-button:hover,
+        .highlighted {
             background-color: #1abc9c;
             border-color: #ecf0f1;
             color: #000;
@@ -164,6 +166,7 @@
     </div>
 
     <div id="controlButtons">
+        <button onclick="window.location.href='home.html'">Home</button>
         <button onclick="clearText()">Clear Text</button>
         <button onclick="saveAsPDF()">Save as PDF</button>
     </div>
@@ -247,5 +250,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>
