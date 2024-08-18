@@ -35,6 +35,20 @@ function App() {
     setOutputText('');
   };
 
+  const convertToBraille = () => {
+    if (outputText) {
+      const brailleURL = `/braille.html?input=${encodeURIComponent(outputText)}`;
+      window.location.href = brailleURL;
+    }
+  };
+
+  const convertToAudio = () => {
+    if (outputText) {
+      const audioURL = `/audio.html?input=${encodeURIComponent(outputText)}`;
+      window.location.href = audioURL;
+    }
+  };
+
   return (
     <div className="App">
       <h1>Web Scraper and Summarizer</h1>
@@ -62,6 +76,20 @@ function App() {
         <a href="/home.html">
           <button>Home</button>
         </a>
+        <button
+          onClick={convertToBraille}
+          disabled={!outputText}
+          style={{ marginLeft: '10px' }}
+        >
+          Convert to Braille
+        </button>
+        <button
+          onClick={convertToAudio}
+          disabled={!outputText}
+          style={{ marginLeft: '10px' }}
+        >
+          Convert to Audio
+        </button>
       </div>
     </div>
   );

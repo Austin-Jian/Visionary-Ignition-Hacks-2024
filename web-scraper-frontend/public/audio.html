@@ -154,7 +154,6 @@
             left: 28px;
             top: 15px;
         }
-
     </style>
 </head>
 
@@ -301,10 +300,24 @@
             document.getElementById('pauseButton').innerText = 'Pause';
         }
 
+        // Function to parse query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('input') || '';
+        }
+
+        // Auto-populate the input text from the query parameter if available
+        window.onload = function () {
+            const inputText = getQueryParams();
+            if (inputText) {
+                document.getElementById('inputText').value = inputText;
+            }
+            populateVoiceList();
+        };
+
         // Populate the voice list when voices are loaded
         window.speechSynthesis.onvoiceschanged = populateVoiceList;
     </script>
-
 </body>
 
 </html>

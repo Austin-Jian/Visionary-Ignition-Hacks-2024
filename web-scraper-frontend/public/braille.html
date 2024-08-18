@@ -180,22 +180,37 @@
             document.getElementById('inputText').value = '';
             document.getElementById('outputText').value = '';
         }
-
+    
         function downloadPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             const outputText = document.getElementById('outputText').value;
-
+    
             // Add content to the PDF
             doc.setFontSize(16);
             doc.text('Braille Translator Output', 20, 20);
             doc.setFontSize(12);
             doc.text(outputText, 20, 30);
-
+    
             // Save the PDF
             doc.save('braille_translation.pdf');
         }
+    
+        // Function to parse query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('input') || '';
+        }
+    
+        // Auto-populate the input text from the query parameter if available
+        window.onload = function () {
+            const inputText = getQueryParams();
+            if (inputText) {
+                document.getElementById('inputText').value = inputText;
+            }
+        };
     </script>
+    
 </body>
 
 </html>
