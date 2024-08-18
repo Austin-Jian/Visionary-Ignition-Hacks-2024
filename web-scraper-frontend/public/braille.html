@@ -172,6 +172,18 @@
     </div>
 
     <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('input') || '';
+        }
+
+        window.onload = function () {
+            const inputText = getQueryParams();
+            if (inputText) {
+                document.getElementById('inputText').value = inputText;
+            }
+        };
+
         function addBrailleSymbol(symbol) {
             document.getElementById('inputText').value += symbol;
         }
