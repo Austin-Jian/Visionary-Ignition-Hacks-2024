@@ -1719,3 +1719,10 @@ background: #F9F9F9;
 width: 99%;
 }
 }
+
+.highlighted {
+    background-color: #1abc9c;
+    border-color: #ecf0f1;
+    color: #000;
+}
+
