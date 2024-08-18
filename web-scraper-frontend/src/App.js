@@ -63,7 +63,7 @@ function App() {
       <button onClick={summarizeContent} disabled={loading}>
         {loading ? 'Loading...' : 'Summarize'}
       </button>
-      <h3>Scraped Output:</h3>
+      <h3>Summary:</h3>
       <textarea
         value={outputText}
         readOnly
