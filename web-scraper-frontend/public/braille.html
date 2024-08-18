@@ -109,6 +109,8 @@
             margin-top: 20px;
         }
     </style>
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -148,7 +150,6 @@
             <div class="braille-button" onclick="addBrailleSymbol('⠽')">⠽<span class="braille-label">Y</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠵')">⠵<span class="braille-label">Z</span></div>
         </div>
-        </div>
         <div id="numberRow">
             <div class="braille-button" onclick="addBrailleSymbol('⠴')">⠴<span class="braille-label">0</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠂')">⠂<span class="braille-label">1</span></div>
@@ -170,6 +171,7 @@
     <div id="controlButtons">
         <button onclick="clearText()">Clear</button>
         <button onclick="location.href='home.html'">Home</button>
+        <button onclick="downloadPDF()">Download PDF</button>
     </div>
 
     <script src="braille.js"></script>
@@ -177,6 +179,21 @@
         function clearText() {
             document.getElementById('inputText').value = '';
             document.getElementById('outputText').value = '';
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const outputText = document.getElementById('outputText').value;
+
+            // Add content to the PDF
+            doc.setFontSize(16);
+            doc.text('Braille Translator Output', 20, 20);
+            doc.setFontSize(12);
+            doc.text(outputText, 20, 30);
+
+            // Save the PDF
+            doc.save('braille_translation.pdf');
         }
     </script>
 </body>
