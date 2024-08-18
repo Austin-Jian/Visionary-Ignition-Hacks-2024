@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,9 +81,10 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        .braille-button:hover {
+        .braille-button:hover, .highlighted {
             background-color: #1abc9c;
             border-color: #ecf0f1;
+            color: #000;
         }
 
         .braille-label {
@@ -102,7 +102,6 @@
             flex-wrap: wrap;
         }
 
-        /* Clear and Home buttons aligned in a row */
         #controlButtons {
             display: flex;
             justify-content: center;
@@ -161,56 +160,92 @@
             <div class="braille-button" onclick="addBrailleSymbol('⠶')">⠶<span class="braille-label">7</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠦')">⠦<span class="braille-label">8</span></div>
             <div class="braille-button" onclick="addBrailleSymbol('⠔')">⠔<span class="braille-label">9</span></div>
-            <div class="braille-button" onclick="addBrailleSymbol('⠀')">⠀<span class="braille-label">Space</span></div>
         </div>
     </div>
 
-    <h3>Converted Output:</h3>
-    <textarea id="outputText" readonly placeholder="The converted text will appear here..."></textarea><br>
-
     <div id="controlButtons">
-        <button onclick="clearText()">Clear</button>
-        <button onclick="location.href='home.html'">Home</button>
-        <button onclick="downloadPDF()">Download PDF</button>
+        <button onclick="clearText()">Clear Text</button>
+        <button onclick="saveAsPDF()">Save as PDF</button>
     </div>
 
-    <script src="braille.js"></script>
     <script>
+        function addBrailleSymbol(symbol) {
+            document.getElementById('inputText').value += symbol;
+        }
+
+        function convertToBraille() {
+            const inputText = document.getElementById('inputText').value;
+            const textToBraille = {
+                'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑', 'f': '⠋', 'g': '⠛', 'h': '⠓',
+                'i': '⠊', 'j': '⠚', 'k': '⠅', 'l': '⠇', 'm': '⠍', 'n': '⠝', 'o': '⠕', 'p': '⠏',
+                'q': '⠟', 'r': '⠗', 's': '⠎', 't': '⠞', 'u': '⠥', 'v': '⠧', 'w': '⠺', 'x': '⠭',
+                'y': '⠽', 'z': '⠵',
+                '0': '⠴', '1': '⠂', '2': '⠆', '3': '⠒', '4': '⠲', '5': '⠢', '6': '⠖', '7': '⠶',
+                '8': '⠦', '9': '⠔',
+                ' ': '⠀'  // Braille space
+            };
+
+            const brailleText = inputText.toLowerCase().split('').map(char => textToBraille[char] || char).join('');
+            document.getElementById('inputText').value = brailleText;
+        }
+
+        function convertToText() {
+            const inputBraille = document.getElementById('inputText').value;
+            const brailleToText = {
+                '⠁': 'a', '⠃': 'b', '⠉': 'c', '⠙': 'd', '⠑': 'e', '⠋': 'f', '⠛': 'g', '⠓': 'h',
+                '⠊': 'i', '⠚': 'j', '⠅': 'k', '⠇': 'l', '⠍': 'm', '⠝': 'n', '⠕': 'o', '⠏': 'p',
+                '⠟': 'q', '⠗': 'r', '⠎': 's', '⠞': 't', '⠥': 'u', '⠧': 'v', '⠺': 'w', '⠭': 'x',
+                '⠽': 'y', '⠵': 'z',
+                '⠴': '0', '⠂': '1', '⠆': '2', '⠒': '3', '⠲': '4', '⠢': '5', '⠖': '6', '⠶': '7',
+                '⠦': '8', '⠔': '9',
+                '⠀': ' '  // Braille space
+            };
+
+            const text = inputBraille.split('').map(symbol => brailleToText[symbol] || symbol).join('');
+            document.getElementById('inputText').value = text;
+        }
+
         function clearText() {
             document.getElementById('inputText').value = '';
-            document.getElementById('outputText').value = '';
         }
-    
-        function downloadPDF() {
+
+        function saveAsPDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            const outputText = document.getElementById('outputText').value;
-    
-            // Add content to the PDF
-            doc.setFontSize(16);
-            doc.text('Braille Translator Output', 20, 20);
-            doc.setFontSize(12);
-            doc.text(outputText, 20, 30);
-    
-            // Save the PDF
-            doc.save('braille_translation.pdf');
+            const text = document.getElementById('inputText').value;
+            doc.text(text, 10, 10);
+            doc.save('braille-text.pdf');
         }
-    
-        // Function to parse query parameters
-        function getQueryParams() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('input') || '';
-        }
-    
-        // Auto-populate the input text from the query parameter if available
-        window.onload = function () {
-            const inputText = getQueryParams();
-            if (inputText) {
-                document.getElementById('inputText').value = inputText;
-            }
-        };
-    </script>
-    
-</body>
 
+        function highlightBrailleButton(character) {
+            const brailleButtons = document.querySelectorAll('.braille-button');
+            brailleButtons.forEach(button => {
+                button.classList.remove('highlighted');
+            });
+
+            const charToBraille = {
+                'a': '⠁', 'b': '⠃', 'c': '⠉', 'd': '⠙', 'e': '⠑', 'f': '⠋', 'g': '⠛', 'h': '⠓',
+                'i': '⠊', 'j': '⠚', 'k': '⠅', 'l': '⠇', 'm': '⠍', 'n': '⠝', 'o': '⠕', 'p': '⠏',
+                'q': '⠟', 'r': '⠗', 's': '⠎', 't': '⠞', 'u': '⠥', 'v': '⠧', 'w': '⠺', 'x': '⠭',
+                'y': '⠽', 'z': '⠵',
+                '0': '⠴', '1': '⠂', '2': '⠆', '3': '⠒', '4': '⠲', '5': '⠢', '6': '⠖', '7': '⠶',
+                '8': '⠦', '9': '⠔',
+            };
+
+            // Get the corresponding Braille symbol
+            const brailleSymbol = charToBraille[character.toLowerCase()];
+
+            brailleButtons.forEach(button => {
+                if (button.textContent.includes(brailleSymbol)) {
+                    button.classList.add('highlighted');
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            highlightBrailleButton(event.key);
+        });
+    </script>
+</body>
 </html>
+
