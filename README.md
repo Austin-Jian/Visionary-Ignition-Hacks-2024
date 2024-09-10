@@ -1,8 +1,8 @@
-**Video DEMO: https://youtu.be/gV9z8ITwAZI?si=FnbF7lMcJ-A6ajy4 **
+**Video DEMO: https://youtu.be/gV9z8ITwAZI?si=FnbF7lMcJ-A6ajy4**
 <img width="1030" alt="Screenshot 2024-09-09 at 10 41 46 PM" src="https://github.com/user-attachments/assets/7317ad2c-3ad9-4720-be8c-2d9f89ef722d">
 <img width="789" alt="Screenshot 2024-09-09 at 10 41 30 PM" src="https://github.com/user-attachments/assets/9f01d958-4bf2-40f5-9d42-1feacfb89628">
 
-**Inspiration: **
+**Inspiration:**
 
 The ideas and motivation behind Visonary stem from our members’ personal experiences—even reading off of a screen without glasses is an unending struggle. 
 We hoped the convenient capabilities of our website would assist in making education disability friendly.
@@ -11,7 +11,7 @@ We hoped the convenient capabilities of our website would assist in making educa
 
 Audioguide: uses Java code implementing Maven and JSoup in order to web scrape and parse user inputted links into a playable text-to-speech audiobook.
 
-**E-Braille: **
+**E-Braille:**
 
 converts and outputs user given text into braille using JavaScript, making it user-convenient and print ready for a braille embosser.
 
